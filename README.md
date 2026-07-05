@@ -1,6 +1,6 @@
 # redaktura-skills
 
-Набор Agent Skills для редактуры, статей, редполитики и UX-текстов на русском языке.
+Набор Agent Skills для редполитики, редактуры, статей, постов, промотекстов и UX-текстов на русском языке.
 
 Метод основан на практиках Люды Сарычевой ([gladlax.ru](https://gladlax.ru)) и собран совместно с Никитой Архиповым ([niar42.com](https://niar42.com)).
 
@@ -11,7 +11,7 @@
 Скопируйте агенту эту фразу:
 
 ```text
-Установи все скиллы из https://github.com/N1arko/redaktura-skills: redpolitika, redaktura, statya, ux-copy. Поставь их как personal skills.
+Установи все скиллы из https://github.com/N1arko/redaktura-skills: redpolitika, redaktura, statya, post, promo, ux-copy. Поставь их как personal skills.
 ```
 
 Для установки одного скилла:
@@ -20,7 +20,7 @@
 Установи ux-copy из https://github.com/N1arko/redaktura-skills.
 ```
 
-Рекомендуется ставить весь набор: `statya` и `ux-copy` используют справочники `redaktura` на финальной проверке.
+Рекомендуется ставить весь набор: `statya`, `post`, `promo` и `ux-copy` используют справочники `redaktura` на финальной проверке.
 
 ## Ручная установка
 
@@ -31,7 +31,7 @@
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.claude/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,ux-copy} ~/.claude/skills/
+cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.claude/skills/
 ```
 
 PowerShell:
@@ -42,6 +42,8 @@ New-Item -ItemType Directory -Force -Path "$HOME\.claude\skills"
 Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" "$HOME\.claude\skills\"
 Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" "$HOME\.claude\skills\"
 Copy-Item -Recurse -Force ".\redaktura-skills\statya" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\post" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\promo" "$HOME\.claude\skills\"
 Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.claude\skills\"
 ```
 
@@ -49,23 +51,23 @@ Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.claude\skills\"
 
 ```bash
 mkdir -p .claude/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,ux-copy} .claude/skills/
+cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} .claude/skills/
 ```
 
-В Claude Code скиллы можно вызывать напрямую: `/redaktura`, `/redpolitika`, `/statya`, `/ux-copy`.
+В Claude Code скиллы можно вызывать напрямую: `/redaktura`, `/redpolitika`, `/statya`, `/post`, `/promo`, `/ux-copy`.
 
 ### Codex
 
 Попросите Codex установить набор из репозитория:
 
 ```text
-Установи все скиллы из https://github.com/N1arko/redaktura-skills: redpolitika, redaktura, statya, ux-copy.
+Установи все скиллы из https://github.com/N1arko/redaktura-skills: redpolitika, redaktura, statya, post, promo, ux-copy.
 ```
 
 Если используете установочный скрипт Codex:
 
 ```bash
-install-skill-from-github.py --repo N1arko/redaktura-skills --path redpolitika redaktura statya ux-copy
+install-skill-from-github.py --repo N1arko/redaktura-skills --path redpolitika redaktura statya post promo ux-copy
 ```
 
 Ручная установка:
@@ -73,7 +75,7 @@ install-skill-from-github.py --repo N1arko/redaktura-skills --path redpolitika r
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.codex/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,ux-copy} ~/.codex/skills/
+cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.codex/skills/
 ```
 
 ### Другие агенты
@@ -87,6 +89,8 @@ cp -R redaktura-skills/{redpolitika,redaktura,statya,ux-copy} ~/.codex/skills/
 | `redpolitika` | Создаёт и обновляет `.agents/redpolitika.md`: читатель, площадки, регистр, словарь, фактура |
 | `redaktura` | Редактирует готовые тексты: смысл, структура, тональность, предложения, слова, ритм |
 | `statya` | Ведёт статью с нуля: бриф, фактура, структура, черновик, самопроверка |
+| `post` | Пишет и усиливает короткие посты: одна мысль, хук, тело, финал, площадка |
+| `promo` | Собирает лендинги, промостраницы, тексты о себе, страницы компании и пресс-релизы |
 | `ux-copy` | Пишет и правит тексты интерфейса: кнопки, ошибки, формы, пустые состояния, уведомления |
 
 ## Как устроена работа
@@ -96,6 +100,8 @@ cp -R redaktura-skills/{redpolitika,redaktura,statya,ux-copy} ~/.codex/skills/
 ```text
 redpolitika -> redaktura
              -> statya
+             -> post
+             -> promo
              -> ux-copy
 ```
 
@@ -114,6 +120,14 @@ redaktura-skills/
 │   └── references/
 ├── statya/
 │   ├── SKILL.md
+│   └── references/
+├── post/
+│   ├── SKILL.md
+│   ├── agents/
+│   └── references/
+├── promo/
+│   ├── SKILL.md
+│   ├── agents/
 │   └── references/
 ├── ux-copy/
 │   ├── SKILL.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Post"
+  short_description: "Пишет и усиливает короткие посты для соцсетей"
+  default_prompt: "Use $post to написать, переписать или усилить короткий пост для Telegram, LinkedIn, Instagram или другого канала."
