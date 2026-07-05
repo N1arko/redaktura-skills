@@ -28,13 +28,15 @@
 
 Личные скиллы, доступны во всех проектах:
 
+macOS / Linux:
+
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.claude/skills
 cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.claude/skills/
 ```
 
-PowerShell:
+Windows PowerShell:
 
 ```powershell
 git clone https://github.com/N1arko/redaktura-skills.git
@@ -49,9 +51,23 @@ Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.claude\skills\"
 
 Проектные скиллы:
 
+macOS / Linux:
+
 ```bash
 mkdir -p .claude/skills
 cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} .claude/skills/
+```
+
+Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force -Path ".\.claude\skills"
+Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\statya" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\post" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\promo" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" ".\.claude\skills\"
 ```
 
 В Claude Code скиллы можно вызывать напрямую: `/redaktura`, `/redpolitika`, `/statya`, `/post`, `/promo`, `/ux-copy`.
@@ -72,10 +88,25 @@ install-skill-from-github.py --repo N1arko/redaktura-skills --path redpolitika r
 
 Ручная установка:
 
+macOS / Linux:
+
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.codex/skills
 cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.codex/skills/
+```
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/N1arko/redaktura-skills.git
+New-Item -ItemType Directory -Force -Path "$HOME\.codex\skills"
+Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\statya" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\post" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\promo" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.codex\skills\"
 ```
 
 ### Другие агенты
