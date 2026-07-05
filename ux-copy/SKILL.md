@@ -2,7 +2,7 @@
 name: ux-copy
 description: "UX-тексты на русском языке: кнопки, формы, ошибки, пустые состояния, онбординг, подтверждения, уведомления, пуши и микрокопия. Use this skill whenever the user asks to write, rewrite, review, choose, or improve interface copy, product messages, UI strings, transactional emails, push notifications, toasts, snackbars, forms, empty states, onboarding, errors, confirmations, labels, tooltips, or button text. Триггеры: «текст для кнопки», «сообщение об ошибке», «текст в форму», «пустое состояние», «подпись к полю», «текст тоста», «снекбар», «онбординг», «пуш-уведомление», «микрокопия», «UX-текст», «что написать на экране…», «лейбл поля», «тултип», «подтверждение удаления», «письмо-уведомление». Для статей и постов см. skills statya и redaktura; для проектного словаря — redpolitika."
 metadata:
-  version: 0.2.1
+  version: 0.2.2
   authors: Люда Сарычева, Никита Архипов
 ---
 
@@ -59,7 +59,7 @@ metadata:
 Правило **польза сообщения**: уведомление вмешивается во внимание пользователя и должно окупать это вмешательство.
 
 ### 5. Тональность
-Сверься с `redaktura/references/tonalnost.md`: без вины, давления, ложной срочности и «упс». Слова пользователя важнее слов системы.
+Сверься с `../redaktura/references/tonalnost.md`: без вины, давления, ложной срочности и «упс». Слова пользователя важнее слов системы.
 
 ## Формат ответа
 
