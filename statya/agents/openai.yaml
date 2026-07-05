@@ -1,0 +1,4 @@
+interface:
+  display_name: "Статья"
+  short_description: "Собирает статью из фактуры и брифа"
+  default_prompt: "Use $statya to собрать структуру или черновик русскоязычной статьи."

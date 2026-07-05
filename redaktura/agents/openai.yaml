@@ -1,0 +1,4 @@
+interface:
+  display_name: "Редактура"
+  short_description: "Редактирует русские тексты по смыслу"
+  default_prompt: "Use $redaktura to отредактировать русский текст и объяснить главные правки."

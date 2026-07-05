@@ -1,0 +1,4 @@
+interface:
+  display_name: "Редполитика"
+  short_description: "Фиксирует голос и словарь проекта"
+  default_prompt: "Use $redpolitika to создать или обновить редполитику проекта."

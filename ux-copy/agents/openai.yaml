@@ -1,0 +1,4 @@
+interface:
+  display_name: "UX-copy"
+  short_description: "Пишет интерфейсные тексты на русском"
+  default_prompt: "Use $ux-copy to написать или улучшить UX-текст на русском."
