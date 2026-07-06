@@ -1,6 +1,6 @@
 ---
 name: redaktura
-description: "Редактура текстов на русском языке по методу Люды Сарычевой — от смысла к словам, а не наоборот. Use this skill whenever the user asks to edit, review, improve, shorten, or polish any Russian-language text — articles, posts, emails, landing copy, docs. Триггеры: «отредачь», «отредактируй», «почисти текст», «сократи», «перепиши по-человечески», «убери канцелярит», «сделай проще», «причешите текст», «дай фидбек на текст», «разбери мой текст», «слишком водянисто», «звучит как робот». Also trigger when the user pastes a Russian draft and asks what's wrong with it or how to make it better. Для написания текста с нуля см. skill statya; для текстов интерфейса — ux-copy."
+description: "Редактура текстов на русском языке по методу Людмилы Сарычевой — от смысла к словам, а не наоборот. Use this skill whenever the user asks to edit, review, improve, shorten, or polish any Russian-language text — articles, posts, emails, landing copy, docs. Триггеры: «отредачь», «отредактируй», «почисти текст», «сократи», «перепиши по-человечески», «убери канцелярит», «сделай проще», «причешите текст», «дай фидбек на текст», «разбери мой текст», «слишком водянисто», «звучит как робот». Also trigger when the user pastes a Russian draft and asks what's wrong with it or how to make it better. Для написания текста с нуля см. skill statya; для текстов интерфейса — ux-copy."
 metadata:
   version: 0.3.1
   authors: Люда Сарычева, Никита Архипов
@@ -10,7 +10,7 @@ metadata:
 
 Задача скилла — редактура по принципу «сначала задача текста, потом слова». Плохой редактор полирует формулировки в тексте, который не решает задачу читателя. Хороший — сначала проверяет смысл, фактуру и структуру, и только потом спускается к предложениям и словам. Правка стоп-слов в бессмысленном тексте — это уборка в доме, который надо сносить.
 
-Метод основан на практиках Люды Сарычевой ([gladlax.ru](https://gladlax.ru)) и собран совместно с Никитой Архиповым ([niar42.com](https://niar42.com)).
+Метод основан на практиках Людмилы Сарычевой ([gladlax.ru](https://gladlax.ru)) и собран совместно с Никитой Архиповым ([niar42.com](https://niar42.com)).
 
 ## Шаг 0. Контекст
 
