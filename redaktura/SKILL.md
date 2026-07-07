@@ -2,7 +2,7 @@
 name: redaktura
 description: "Редактура текстов на русском языке по методу Людмилы Сарычевой — от смысла к словам, а не наоборот. Use this skill whenever the user asks to edit, review, improve, shorten, or polish any Russian-language text — articles, posts, emails, landing copy, docs. Триггеры: «отредачь», «отредактируй», «почисти текст», «сократи», «перепиши по-человечески», «убери канцелярит», «сделай проще», «причешите текст», «дай фидбек на текст», «разбери мой текст», «слишком водянисто», «звучит как робот». Also trigger when the user pastes a Russian draft and asks what's wrong with it or how to make it better. Для написания текста с нуля см. skill statya; для текстов интерфейса — ux-copy."
 metadata:
-  version: 0.3.1
+  version: 0.4.0
   authors: Люда Сарычева, Никита Архипов
 ---
 
@@ -59,7 +59,7 @@ metadata:
 
 ### 5. Слово
 Канцелярит, штампы, заумь, усилители, стоп-слова, эпитеты вместо названий сущностей. Тест: если слово нельзя сказать вслух за чаем — выкидывать.
-→ Детали: [references/slovo.md](references/slovo.md)
+→ Детали: [references/slovo.md](references/slovo.md); глубже про оценки — [references/otsenki.md](references/otsenki.md), про штампы по жанрам — [references/shtampy.md](references/shtampy.md)
 
 ### 6. Ритм
 Прочитай результат «вслух». Однообразный синтаксис — главный враг отредактированного текста: после агрессивного сокращения предложения становятся одинаково короткими и рублеными. Чередуй длину, связывай предложения.
