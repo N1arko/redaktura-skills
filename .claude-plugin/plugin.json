@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "redaktura-skills",
+  "displayName": "Редактура по Сарычевой",
+  "version": "0.4.0",
+  "description": "Шесть русскоязычных скиллов для редполитики, редактуры, статей, постов, промотекстов и UX-текстов.",
+  "author": {
+    "name": "Людмила Сарычева и Никита Архипов",
+    "url": "https://github.com/N1arko/redaktura-skills"
+  },
+  "homepage": "https://github.com/N1arko/redaktura-skills",
+  "repository": "https://github.com/N1arko/redaktura-skills",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "russian",
+    "writing",
+    "editing",
+    "copywriting",
+    "agent-skills"
+  ],
+  "skills": [
+    "./redpolitika",
+    "./redaktura",
+    "./statya",
+    "./post",
+    "./promo",
+    "./ux-copy"
+  ]
+}

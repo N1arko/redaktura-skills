@@ -1,0 +1,22 @@
+{
+  "name": "redaktura-skills",
+  "description": "Русскоязычные редакторские скиллы по методу Людмилы Сарычевой.",
+  "owner": {
+    "name": "Людмила Сарычева и Никита Архипов",
+    "url": "https://github.com/N1arko/redaktura-skills"
+  },
+  "plugins": [
+    {
+      "name": "redaktura-skills",
+      "source": "./",
+      "displayName": "Редактура по Сарычевой",
+      "description": "Редполитика, редактура, статьи, посты, промотексты и UX-тексты на русском языке.",
+      "category": "productivity",
+      "tags": [
+        "writing",
+        "editing",
+        "russian"
+      ]
+    }
+  ]
+}
