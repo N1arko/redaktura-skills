@@ -11,7 +11,11 @@
 Скопируйте агенту этот промт. Без автообновлений достаточно первого абзаца — до слов «Сохрани репозиторий».
 
 ```text
-Установи Agent Plugin из https://github.com/N1arko/redaktura-skills для текущего пользователя. В Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope. В Codex и других клиентах с поддержкой Agent Plugins подключи корень репозитория как один Agent Plugin. Проверь, что доступны все шесть скиллов: redpolitika, redaktura, statya, post, promo и ux-copy.
+Установи набор из https://github.com/N1arko/redaktura-skills для текущего пользователя.
+
+Если клиент поддерживает Agent Plugins, подключи корень репозитория как один Agent Plugin: `plugin.json` и папку `skills/`. Используй нативный способ клиента; не превращай набор в Codex marketplace. Если клиент умеет только Agent Skills, установи шесть папок из `skills/`: redpolitika, redaktura, statya, post, promo и ux-copy. Для Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope.
+
+Проверь, что доступны все шесть скиллов.
 
 Сохрани репозиторий как источник обновлений способом, подходящим для текущего клиента. В Claude Code используй уже добавленный marketplace: включи для redaktura-skills встроенное auto-update. Если переключатель доступен только пользователю, дай один завершающий шаг: `/plugin` → `Marketplaces` → `redaktura-skills` → `Enable auto-update`. Отдельную ежемесячную задачу для Claude Code не создавай.
 
@@ -108,19 +112,7 @@ Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" ".\.claude\skills\
 
 ### Codex
 
-Попросите Codex установить набор из репозитория:
-
-```text
-Установи Agent Plugin из https://github.com/N1arko/redaktura-skills. Проверь, что доступны redpolitika, redaktura, statya, post, promo и ux-copy.
-```
-
-Если используете установочный скрипт Codex:
-
-```bash
-install-skill-from-github.py --repo N1arko/redaktura-skills --path skills/redpolitika skills/redaktura skills/statya skills/post skills/promo skills/ux-copy
-```
-
-Ручная установка:
+Если Codex предлагает нативную установку Agent Plugins, используйте первый абзац из быстрой установки. Иначе установите скиллы вручную:
 
 macOS / Linux:
 
@@ -143,9 +135,32 @@ Copy-Item -Recurse -Force ".\redaktura-skills\skills\promo" "$HOME\.codex\skills
 Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" "$HOME\.codex\skills\"
 ```
 
+### Hermes
+
+Добавьте репозиторий как источник скиллов и установите набор:
+
+```bash
+hermes skills tap add N1arko/redaktura-skills
+for skill in redpolitika redaktura statya post promo ux-copy; do
+  hermes skills install "N1arko/redaktura-skills/$skill"
+done
+hermes skills list
+```
+
+Windows PowerShell:
+
+```powershell
+hermes skills tap add N1arko/redaktura-skills
+$skills = "redpolitika", "redaktura", "statya", "post", "promo", "ux-copy"
+$skills | ForEach-Object { hermes skills install "N1arko/redaktura-skills/$_" }
+hermes skills list
+```
+
+После установки начните новую сессию или выполните `/reset`. Для обновления: `hermes skills update`.
+
 ### Другие агенты
 
-Скопируйте нужные папки в директорию, где агент ищет skills. Каждая папка автономна по формату: внутри есть `SKILL.md`, а дополнительные материалы лежат в `references/` или `assets/`.
+Для клиента с поддержкой Agent Plugins подключите корень репозитория. Иначе скопируйте нужные папки из `skills/` в директорию агента: каждая содержит `SKILL.md` и нужные материалы в `references/` или `assets/`.
 
 ## Скиллы
 
