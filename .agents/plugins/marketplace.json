@@ -1,0 +1,13 @@
+{
+  "name": "redaktura-skills",
+  "interface": {
+    "displayName": "Редактура по Сарычевой"
+  },
+  "plugins": [
+    {
+      "name": "redaktura-skills",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

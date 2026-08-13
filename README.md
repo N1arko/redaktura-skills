@@ -13,15 +13,15 @@
 ```text
 Установи набор из https://github.com/N1arko/redaktura-skills для текущего пользователя.
 
-Если клиент поддерживает Agent Plugins, подключи корень репозитория как один Agent Plugin: `plugin.json` и папку `skills/`. Используй нативный способ клиента; не превращай набор в Codex marketplace. Если клиент умеет только Agent Skills, установи шесть папок из `skills/`: redpolitika, redaktura, statya, post, promo и ux-copy. Для Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope.
+Если клиент поддерживает Agent Plugins, подключи корень репозитория как один Agent Plugin: `plugin.json` и папку `skills/`. Используй нативный способ клиента и не копируй скиллы по одному. Marketplace-файл клиента допустим только как каталог установки: сам плагин остаётся переносимым пакетом Agent Plugins. Если клиент умеет только Agent Skills, установи шесть папок из `skills/`: redpolitika, redaktura, statya, post, promo и ux-copy. Для Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope.
 
 Проверь, что доступны все шесть скиллов.
 
 Сохрани репозиторий как источник обновлений способом, подходящим для текущего клиента. В Claude Code используй уже добавленный marketplace: включи для redaktura-skills встроенное auto-update. Если переключатель доступен только пользователю, дай один завершающий шаг: `/plugin` → `Marketplaces` → `redaktura-skills` → `Enable auto-update`. Отдельную ежемесячную задачу для Claude Code не создавай.
 
-Если клиент не умеет обновлять marketplace, сохрани управляемую Git-копию в постоянной служебной папке пользователя и подключи из неё папки скиллов. Используй ссылки на папки, когда клиент и операционная система их поддерживают. В остальных случаях настрой безопасное копирование с сохранением предыдущей версии. Создай постоянную локальную задачу «Обновление redaktura-skills» на 1-е число каждого месяца в 10:00 по местному времени. На каждом запуске проверяй origin/main. Применяй обновление только через fast-forward, если локальная копия не изменена и новая версия содержит все шесть скиллов. Сообщай результат одной короткой сводкой; при локальных изменениях, конфликте или ошибке сохраняй текущую версию и запрашивай ручную проверку.
+Если у клиента нет встроенного auto-update, создай постоянную локальную задачу «Обновление redaktura-skills» на 1-е число каждого месяца в 10:00 по местному времени. Для Codex выполни `codex plugin marketplace upgrade redaktura-skills`, для Hermes — `hermes plugins update redaktura-skills`; остальные клиенты обновляй через их нативный механизм. Если нативного механизма нет, сохрани управляемую Git-копию в постоянной служебной папке пользователя и обновляй её только через fast-forward, если локальная копия не изменена и новая версия содержит все шесть скиллов. Сообщай результат одной короткой сводкой; при локальных изменениях, конфликте или ошибке сохраняй текущую версию и запрашивай ручную проверку.
 
-После настройки сразу проверь обновления. Если клиент не поддерживает ни автообновление marketplace, ни постоянные локальные задачи, установи скиллы и сообщи об этом ограничении.
+После настройки сразу проверь обновления. Если клиент не поддерживает ни автообновление, ни нативное обновление, ни постоянные локальные задачи, установи скиллы и сообщи об этом ограничении.
 ```
 
 Для установки одного скилла:
@@ -112,51 +112,42 @@ Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" ".\.claude\skills\
 
 ### Codex
 
-Если Codex предлагает нативную установку Agent Plugins, используйте первый абзац из быстрой установки. Иначе установите скиллы вручную:
-
-macOS / Linux:
+Codex подключает корневой пакет Agent Plugins через marketplace. Файл `.agents/plugins/marketplace.json` — только каталог установки: сам плагин по-прежнему описан корневым `plugin.json`.
 
 ```bash
-git clone https://github.com/N1arko/redaktura-skills.git
-mkdir -p ~/.codex/skills
-cp -R redaktura-skills/skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.codex/skills/
+codex plugin marketplace add N1arko/redaktura-skills
+codex plugin add redaktura-skills@redaktura-skills
+codex plugin list
 ```
 
-Windows PowerShell:
+После установки начните новую сессию Codex.
 
-```powershell
-git clone https://github.com/N1arko/redaktura-skills.git
-New-Item -ItemType Directory -Force -Path "$HOME\.codex\skills"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\redpolitika" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\redaktura" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\statya" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\post" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\promo" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" "$HOME\.codex\skills\"
+Автообновление в CLI не включается отдельным переключателем. Для обновления плагина без переустановки выполните:
+
+```bash
+codex plugin marketplace upgrade redaktura-skills
 ```
+
+Для автоматического обновления добавьте эту команду в планировщик ОС, например раз в месяц.
 
 ### Hermes
 
-Добавьте репозиторий как источник скиллов и установите набор:
+Hermes устанавливает корневой пакет Agent Plugins напрямую из Git:
 
 ```bash
-hermes skills tap add N1arko/redaktura-skills
-for skill in redpolitika redaktura statya post promo ux-copy; do
-  hermes skills install "N1arko/redaktura-skills/$skill"
-done
-hermes skills list
+hermes plugins install N1arko/redaktura-skills --enable
+hermes plugins list --enabled
 ```
 
-Windows PowerShell:
+После установки начните новую сессию или выполните `/reset`.
 
-```powershell
-hermes skills tap add N1arko/redaktura-skills
-$skills = "redpolitika", "redaktura", "statya", "post", "promo", "ux-copy"
-$skills | ForEach-Object { hermes skills install "N1arko/redaktura-skills/$_" }
-hermes skills list
+Автообновление в CLI не включается отдельным переключателем. Для обновления плагина без переустановки выполните:
+
+```bash
+hermes plugins update redaktura-skills
 ```
 
-После установки начните новую сессию или выполните `/reset`. Для обновления: `hermes skills update`.
+Для автоматического обновления добавьте эту команду в планировщик ОС, например раз в месяц.
 
 ### Другие агенты
 
@@ -213,6 +204,8 @@ redpolitika -> redaktura
 ```text
 redaktura-skills/
 ├── plugin.json
+├── .agents/plugins/
+│   └── marketplace.json
 ├── .claude-plugin/
 │   ├── marketplace.json
 │   └── plugin.json
