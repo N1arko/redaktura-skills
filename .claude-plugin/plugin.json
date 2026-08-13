@@ -19,11 +19,11 @@
     "agent-skills"
   ],
   "skills": [
-    "./redpolitika",
-    "./redaktura",
-    "./statya",
-    "./post",
-    "./promo",
-    "./ux-copy"
+    "./skills/redpolitika",
+    "./skills/redaktura",
+    "./skills/statya",
+    "./skills/post",
+    "./skills/promo",
+    "./skills/ux-copy"
   ]
 }
