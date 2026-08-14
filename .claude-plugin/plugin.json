@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "redaktura-skills",
   "displayName": "Редактура по Сарычевой",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Шесть русскоязычных скиллов для редполитики, редактуры, статей, постов, промотекстов и UX-текстов.",
   "author": {
     "name": "Людмила Сарычева и Никита Архипов",
