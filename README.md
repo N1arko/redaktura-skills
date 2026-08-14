@@ -1,23 +1,27 @@
 # redaktura-skills
 
-Набор Agent Skills для редполитики, редактуры, статей, постов, промотекстов и UX-текстов на русском языке.
+Набор Agent Skills для редполитики, редактуры, статей, постов, промотекстов и UX-текстов на русском языке. Скиллы упакованы по спецификации [Agent Plugins 1.0.0](https://agent-plugins.org/): корень пакета содержит `plugin.json`, а сами скиллы — папка `skills/`. Agent Plugins 1.0 — Working Draft, поэтому способы подключения могут отличаться между клиентами.
 
 Метод основан на практиках Людмилы Сарычевой ([gladlax.ru](https://gladlax.ru)) и собран совместно с Никитой Архиповым ([niar42.com](https://niar42.com)).
 
-Папки совместимы с клиентами, которые читают скиллы в формате `SKILL.md`: Claude Code, Codex и другие агенты с поддержкой Agent Skills. Для Claude Code набор доступен как плагин из собственного marketplace, для Codex дополнительно есть `agents/openai.yaml`.
+Набор совместим с клиентами, которые читают скиллы в формате `SKILL.md`: Claude Code, Codex и другими агентами с поддержкой Agent Skills. Для Claude Code сохранён плагин из собственного marketplace, а `agents/openai.yaml` остаются дополнительными метаданными для Codex.
 
 ## Быстрая установка через агента
 
-Скопируйте агенту этот промт. Без автообновлений достаточно первого абзаца — до слов «Сохрани репозиторий».
+Скопируйте агенту этот промт. Без автообновлений используйте часть до строки «Сохрани репозиторий».
 
 ```text
-Установи весь набор скиллов из https://github.com/N1arko/redaktura-skills для текущего пользователя. В Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope. В Codex и других клиентах Agent Skills установи как personal skills папки redpolitika, redaktura, statya, post, promo и ux-copy. Проверь, что доступны все шесть скиллов.
+Установи набор из https://github.com/N1arko/redaktura-skills для текущего пользователя.
 
-Сохрани репозиторий как источник обновлений способом, подходящим для текущего клиента. В Claude Code используй уже добавленный marketplace: включи для redaktura-skills встроенное auto-update. Если переключатель доступен только пользователю, дай один завершающий шаг: `/plugin` → `Marketplaces` → `redaktura-skills` → `Enable auto-update`. Отдельную ежемесячную задачу для Claude Code не создавай.
+Если клиент поддерживает Agent Plugins, подключи корень репозитория как один Agent Plugin: `plugin.json` и папку `skills/`. Используй нативный способ клиента и не копируй скиллы по одному. Marketplace-файл клиента допустим только как каталог установки: сам плагин остаётся переносимым пакетом Agent Plugins. Для Codex это рекомендованный способ: добавь marketplace N1arko/redaktura-skills, установи redaktura-skills@redaktura-skills и проверь его через `codex plugin list`. Если клиент умеет только Agent Skills или Codex не поддерживает установку плагина, установи шесть папок из `skills/`: redpolitika, redaktura, statya, post, promo и ux-copy. Для Claude Code добавь marketplace N1arko/redaktura-skills и установи плагин redaktura-skills@redaktura-skills в user scope.
 
-Если клиент не умеет обновлять marketplace, сохрани управляемую Git-копию в постоянной служебной папке пользователя и подключи из неё папки скиллов. Используй ссылки на папки, когда клиент и операционная система их поддерживают. В остальных случаях настрой безопасное копирование с сохранением предыдущей версии. Создай постоянную локальную задачу «Обновление redaktura-skills» на 1-е число каждого месяца в 10:00 по местному времени. На каждом запуске проверяй origin/main. Применяй обновление только через fast-forward, если локальная копия не изменена и новая версия содержит все шесть скиллов. Сообщай результат одной короткой сводкой; при локальных изменениях, конфликте или ошибке сохраняй текущую версию и запрашивай ручную проверку.
+Проверь, что доступны все шесть скиллов.
 
-После настройки сразу проверь обновления. Если клиент не поддерживает ни автообновление marketplace, ни постоянные локальные задачи, установи скиллы и сообщи об этом ограничении.
+Сохрани репозиторий как источник обновлений способом, подходящим для текущего клиента. Если существующая установка или задача обновления ссылается на `<копия-репозитория>/<имя-скилла>`, до обновления переподключи её к `<копия-репозитория>/skills/<имя-скилла>` для всех шести скиллов и только затем проверь их доступность. В Claude Code используй уже добавленный marketplace: включи для redaktura-skills встроенное auto-update. Если переключатель доступен только пользователю, дай один завершающий шаг: `/plugin` → `Marketplaces` → `redaktura-skills` → `Enable auto-update`. Отдельную ежемесячную задачу для Claude Code не создавай.
+
+Если у клиента нет встроенного auto-update, создай постоянную локальную задачу «Обновление redaktura-skills» на 1-е число каждого месяца в 10:00 по местному времени. Для Codex, установленного как плагин, выполни `codex plugin marketplace upgrade redaktura-skills`, для Hermes — `hermes plugins update redaktura-skills`; остальные клиенты обновляй через их нативный механизм. Для отдельных скиллов сохрани управляемую Git-копию в постоянной служебной папке пользователя и обновляй её только через fast-forward, если локальная копия не изменена и новая версия содержит все шесть скиллов; после обновления используй пути из `skills/`. Сообщай результат одной короткой сводкой; при локальных изменениях, конфликте или ошибке сохраняй текущую версию и запрашивай ручную проверку.
+
+После настройки сразу проверь обновления. Если клиент не поддерживает ни автообновление, ни нативное обновление, ни постоянные локальные задачи, установи скиллы и сообщи об этом ограничении.
 ```
 
 Для установки одного скилла:
@@ -27,6 +31,10 @@
 ```
 
 Рекомендуется ставить весь набор: `statya`, `post`, `promo` и `ux-copy` используют справочники `redaktura` на финальной проверке.
+
+### Миграция со старой структуры
+
+До версии `0.5.0` скиллы лежали в корне Git-копии: `<копия-репозитория>/<имя-скилла>`. После `git pull --ff-only` старые ссылки, симлинки и задачи обновления перестанут находить эти папки. Перед обновлением направьте их на `<копия-репозитория>/skills/<имя-скилла>` для всех шести скиллов. Установки, в которые скиллы были скопированы целиком, продолжат работать; при следующем обновлении копируйте их из `skills/`.
 
 ## Ручная установка
 
@@ -67,7 +75,7 @@ macOS / Linux:
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.claude/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.claude/skills/
+cp -R redaktura-skills/skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.claude/skills/
 ```
 
 Windows PowerShell:
@@ -75,12 +83,12 @@ Windows PowerShell:
 ```powershell
 git clone https://github.com/N1arko/redaktura-skills.git
 New-Item -ItemType Directory -Force -Path "$HOME\.claude\skills"
-Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" "$HOME\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" "$HOME\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\statya" "$HOME\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\post" "$HOME\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\promo" "$HOME\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redpolitika" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redaktura" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\statya" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\post" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\promo" "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" "$HOME\.claude\skills\"
 ```
 
 Проектные скиллы:
@@ -89,45 +97,55 @@ macOS / Linux:
 
 ```bash
 mkdir -p .claude/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} .claude/skills/
+cp -R redaktura-skills/skills/{redpolitika,redaktura,statya,post,promo,ux-copy} .claude/skills/
 ```
 
 Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force -Path ".\.claude\skills"
-Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" ".\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" ".\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\statya" ".\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\post" ".\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\promo" ".\.claude\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redpolitika" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redaktura" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\statya" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\post" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\promo" ".\.claude\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" ".\.claude\skills\"
 ```
 
 При установке отдельными папками скиллы вызываются напрямую: `/redaktura`, `/redpolitika`, `/statya`, `/post`, `/promo`, `/ux-copy`.
 
 ### Codex
 
-Попросите Codex установить набор из репозитория:
+#### Установка плагина (рекомендуется)
 
-```text
-Установи все скиллы из https://github.com/N1arko/redaktura-skills: redpolitika, redaktura, statya, post, promo, ux-copy.
-```
-
-Если используете установочный скрипт Codex:
+Codex подключает корневой пакет Agent Plugins через marketplace. Файл `.agents/plugins/marketplace.json` — только каталог установки: сам плагин по-прежнему описан корневым `plugin.json`.
 
 ```bash
-install-skill-from-github.py --repo N1arko/redaktura-skills --path redpolitika redaktura statya post promo ux-copy
+codex plugin marketplace add N1arko/redaktura-skills
+codex plugin add redaktura-skills@redaktura-skills
+codex plugin list
 ```
 
-Ручная установка:
+После установки начните новую сессию Codex.
+
+Автообновление в CLI не включается отдельным переключателем. Для обновления плагина без переустановки выполните:
+
+```bash
+codex plugin marketplace upgrade redaktura-skills
+```
+
+Для автоматического обновления добавьте эту команду в планировщик ОС, например раз в месяц.
+
+#### Установка скиллов
+
+Этот вариант нужен для версий Codex без установки плагинов или когда скиллы должны быть доступны по отдельности. Обновления для него настраиваются отдельно.
 
 macOS / Linux:
 
 ```bash
 git clone https://github.com/N1arko/redaktura-skills.git
 mkdir -p ~/.codex/skills
-cp -R redaktura-skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.codex/skills/
+cp -R redaktura-skills/skills/{redpolitika,redaktura,statya,post,promo,ux-copy} ~/.codex/skills/
 ```
 
 Windows PowerShell:
@@ -135,17 +153,38 @@ Windows PowerShell:
 ```powershell
 git clone https://github.com/N1arko/redaktura-skills.git
 New-Item -ItemType Directory -Force -Path "$HOME\.codex\skills"
-Copy-Item -Recurse -Force ".\redaktura-skills\redpolitika" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\redaktura" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\statya" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\post" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\promo" "$HOME\.codex\skills\"
-Copy-Item -Recurse -Force ".\redaktura-skills\ux-copy" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redpolitika" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\redaktura" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\statya" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\post" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\promo" "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force ".\redaktura-skills\skills\ux-copy" "$HOME\.codex\skills\"
 ```
+
+Для обновления сначала выполните `git -C redaktura-skills pull --ff-only`, затем повторите копирование из `redaktura-skills/skills/`. Если вместо копирования используются ссылки, направьте их на эти же пути.
+
+### Hermes
+
+Hermes устанавливает корневой пакет Agent Plugins напрямую из Git:
+
+```bash
+hermes plugins install N1arko/redaktura-skills --enable
+hermes plugins list --enabled
+```
+
+После установки начните новую сессию или выполните `/reset`.
+
+Автообновление в CLI не включается отдельным переключателем. Для обновления плагина без переустановки выполните:
+
+```bash
+hermes plugins update redaktura-skills
+```
+
+Для автоматического обновления добавьте эту команду в планировщик ОС, например раз в месяц.
 
 ### Другие агенты
 
-Скопируйте нужные папки в директорию, где агент ищет skills. Каждая папка автономна по формату: внутри есть `SKILL.md`, а дополнительные материалы лежат в `references/` или `assets/`.
+Для клиента с поддержкой Agent Plugins подключите корень репозитория. Иначе скопируйте нужные папки из `skills/` в директорию агента: каждая содержит `SKILL.md` и нужные материалы в `references/` или `assets/`.
 
 ## Скиллы
 
@@ -197,30 +236,34 @@ redpolitika -> redaktura
 
 ```text
 redaktura-skills/
+├── plugin.json
+├── .agents/plugins/
+│   └── marketplace.json
 ├── .claude-plugin/
 │   ├── marketplace.json
 │   └── plugin.json
-├── redpolitika/
-│   ├── SKILL.md
-│   ├── assets/
-│   └── references/
-├── redaktura/
-│   ├── SKILL.md
-│   └── references/
-├── statya/
-│   ├── SKILL.md
-│   └── references/
-├── post/
-│   ├── SKILL.md
-│   ├── agents/
-│   └── references/
-├── promo/
-│   ├── SKILL.md
-│   ├── agents/
-│   └── references/
-├── ux-copy/
-│   ├── SKILL.md
-│   └── references/
+├── skills/
+│   ├── redpolitika/
+│   │   ├── SKILL.md
+│   │   ├── assets/
+│   │   └── references/
+│   ├── redaktura/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   ├── statya/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   ├── post/
+│   │   ├── SKILL.md
+│   │   ├── agents/
+│   │   └── references/
+│   ├── promo/
+│   │   ├── SKILL.md
+│   │   ├── agents/
+│   │   └── references/
+│   └── ux-copy/
+│       ├── SKILL.md
+│       └── references/
 ├── examples/
 │   └── hubble-news/
 ├── LICENSE
